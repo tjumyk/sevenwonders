@@ -165,7 +165,7 @@ public class CardGroup extends Parent {
                 g[i] = new Group();
                 ok[i] = new ImageView(ResManager.getImage("ok.png"));
                 notok[i] = new ImageView(ResManager.getImage("notok.png"));
-                free[i] = new ImageView(ResManager.getImage("free.png"));
+                free[i] = new ImageView(ResManager.getImage("freeok.png"));
                 brown[i] = new ImageView(ResManager.getImage("pfeil.png"));
                 brown1[i] = new ImageView(ResManager.getImage("pfeil.png"));
                 chooser[i] = new ImageView(ResManager.getImage("chooser.png"));

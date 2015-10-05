@@ -57,6 +57,7 @@ public class Manager extends Application {
             log.info("Check Effect support...Yes!");
         else
             log.warn("Check Effect support...No!");
+        // The following check is only allowed on the event thread. I've commented it in the last commit
 //		if (Platform.isSupported(ConditionalFeature.INPUT_METHOD))
 //			log.info("Check Input Method support...Yes!");
 //		else

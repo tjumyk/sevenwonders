@@ -46,7 +46,7 @@ public class DisplayShelf extends SceneContainer {
             // images[0] = new Image("file:res/image/demo.png");
 
             for (int i = 0; i < 12; i++) {
-                images[i] = ResManager.getImage("manual (" + i + ").png");
+                images[i] = ResManager.getImage("manual (" + (i + 1) + ").png");
             }
             // create display shelf
             Shelf displayShelf = new Shelf(images);
