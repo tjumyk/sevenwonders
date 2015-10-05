@@ -1,51 +1,30 @@
 package org.tjuscs.sevenwonders.net;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.DefaultListModel;
-import javax.swing.InputVerifier;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTextField;
-
 
 /**
- * 
  * @author CSDN ID:zhouyuqwert
- *
  */
 public class ServerUI// extends JFrame
 {
-	private static ServerUI serverUI = new ServerUI();
-	
-	private static ArrayList<String> list = new ArrayList<String>();// 在线列表
+    private static ServerUI serverUI = new ServerUI();
 
-	public static ServerUI getServerUIInstance()
-	{
-		return serverUI;
-	}
+    private static ArrayList<String> list = new ArrayList<String>();// 在线列表
 
-	public boolean isWaiting(){
-		return connect.waiting;
-	}
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;// 序列化编号
+    public static ServerUI getServerUIInstance() {
+        return serverUI;
+    }
+
+    public boolean isWaiting() {
+        return connect.waiting;
+    }
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;// 序列化编号
 
 //	private JPanel panel;// 仅次于Frame一层包裹其他层次控件
 //
@@ -61,7 +40,7 @@ public class ServerUI// extends JFrame
 //
 //	private JLabel lb_status;// 状态变更
 //
-	//private String status;
+    //private String status;
 //	private JTextField txt_port;// 端口
 //
 //	private JButton btn_start;// 启动服务器
@@ -70,13 +49,12 @@ public class ServerUI// extends JFrame
 //
 //	private JList list_users;// 在线列表
 
-	private ServerConnect connect;// 监听连接
+    private ServerConnect connect;// 监听连接
 
-	/**
-	 * 初始化界面
-	 */
-	private ServerUI()
-	{
+    /**
+     * 初始化界面
+     */
+    private ServerUI() {
 //		super("服务器");
 //		panel = new JPanel(new BorderLayout());
 //
@@ -145,29 +123,25 @@ public class ServerUI// extends JFrame
 //			@Override
 //			public void actionPerformed(ActionEvent e)
 //			{
-				//String text =;
-				int port =  NetManager.getPort();
-				int maxClient = NetManager.getPlayerNum();
+        //String text =;
+        int port = NetManager.getPort();
+        int maxClient = NetManager.getPlayerNum();
 //				if (text.length() <= 0)
 //				{
 //					JOptionPane.showMessageDialog(null, "请输入1024到65535的数字！");
 //					return;
 //				}
-				try
-				{
-					connect = new ServerConnect(port,maxClient);
-				}
-				catch (NumberFormatException e1)
-				{
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				catch (IOException e1)
-				{
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				connect.waitForClient();}// 开启线程等待在port上
+        try {
+            connect = new ServerConnect(port, maxClient);
+        } catch (NumberFormatException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        connect.waitForClient();
+    }// 开启线程等待在port上
 //				btn_start.setVisible(false);
 //				btn_stop.setVisible(true);
 //				txt_port.setEditable(false);
@@ -273,56 +247,48 @@ public class ServerUI// extends JFrame
 //		});
 //	}
 
-	/**
-	 * 向在线列表添加
-	 * 
-	 * @param name
-	 * @return
-	 */
-	public boolean addUser(String name)
-	{
-		//DefaultListModel lm = (DefaultListModel) list_users.getModel();
+    /**
+     * 向在线列表添加
+     *
+     * @param name
+     * @return
+     */
+    public boolean addUser(String name) {
+        //DefaultListModel lm = (DefaultListModel) list_users.getModel();
 
-		if (list.contains(name))
-		{
-			// JOptionPane.showMessageDialog(null, "该用户已存在！");
+        if (list.contains(name)) {
+            // JOptionPane.showMessageDialog(null, "该用户已存在！");
 
-			// 在客户端弹出消息
-			return false;
-		}
+            // 在客户端弹出消息
+            return false;
+        }
 
-		list.add(name);
-		return true;
-	}
-	
-	public void removeUser(String name)
-	{
-		//DefaultListModel lm = (DefaultListModel) list_users.getModel();
-		list.remove(name);
-	}
-	
-	public void clearUsers()
-	{
-		//DefaultListModel lm = (DefaultListModel) list_users.getModel();
-		list.clear();
-	}
-	
-	public Object[] getUsers()
-	{
-		//DefaultListModel lm = (DefaultListModel) list_users.getModel();
+        list.add(name);
+        return true;
+    }
 
-		return list.toArray();
-	}
-	
-	public void stopServer(){
-		try
-		{
-			connect.stopServer();
-		}
-		catch (IOException e1)
-		{
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}
+    public void removeUser(String name) {
+        //DefaultListModel lm = (DefaultListModel) list_users.getModel();
+        list.remove(name);
+    }
+
+    public void clearUsers() {
+        //DefaultListModel lm = (DefaultListModel) list_users.getModel();
+        list.clear();
+    }
+
+    public Object[] getUsers() {
+        //DefaultListModel lm = (DefaultListModel) list_users.getModel();
+
+        return list.toArray();
+    }
+
+    public void stopServer() {
+        try {
+            connect.stopServer();
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+    }
 }

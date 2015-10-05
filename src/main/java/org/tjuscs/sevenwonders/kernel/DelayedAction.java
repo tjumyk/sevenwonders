@@ -6,9 +6,9 @@ package org.tjuscs.sevenwonders.kernel;
  */
 interface DelayedAction {
 
-	/**
-	 * Do delayed action.<br>
-	 * 启动延时动作
-	 */
-	void doDelayedAction();
+    /**
+     * Do delayed action.<br>
+     * 启动延时动作
+     */
+    void doDelayedAction();
 }

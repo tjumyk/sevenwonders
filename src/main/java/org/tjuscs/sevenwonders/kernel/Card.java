@@ -1,373 +1,379 @@
 package org.tjuscs.sevenwonders.kernel;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * The Class Card.
  */
-public class Card implements Cloneable, Buildable ,Serializable{
+public class Card implements Cloneable, Buildable, Serializable {
 
-	/** The cost. */
-	EnumMap<Resource, Integer> cost;
+    /**
+     * The cost.
+     */
+    EnumMap<Resource, Integer> cost;
 
-	/** The goods. */
-	EnumMap<Resource, Integer> goods;
+    /**
+     * The goods.
+     */
+    EnumMap<Resource, Integer> goods;
 
-	/** The free list. */
-	ArrayList<String> freeList;
+    /**
+     * The free list.
+     */
+    ArrayList<String> freeList;
 
-	/** The name. */
-	String name;
+    /**
+     * The name.
+     */
+    String name;
 
-	/** The color. */
-	CardColor color;
+    /**
+     * The color.
+     */
+    CardColor color;
 
-	CommandOption cmd;
-	/** The age. */
-	int age;
-	
-	int coinNeed = 0;
+    CommandOption cmd;
+    /**
+     * The age.
+     */
+    int age;
 
-	/** The player number. */
-	int playerNumber;
+    int coinNeed = 0;
 
-	/** The action. */
-	Action action;
+    /**
+     * The player number.
+     */
+    int playerNumber;
 
-	/**
-	 * Instantiates a new card.
-	 */
-	public Card() {
-		cmd = new CommandOption();
-		cmd.setCard(this);
-		cost = new EnumMap<Resource, Integer>(Resource.class);
-		goods = new EnumMap<Resource, Integer>(Resource.class);
-		freeList = null;
-		action = null;
-		coinNeed = 0;
-		name = "No Name";
-	}
+    /**
+     * The action.
+     */
+    Action action;
 
-	/**
-	 * Instantiates a new card.
-	 * 
-	 * @param nm
-	 *            the nm
-	 * @param age
-	 *            the age
-	 * @param plynum
-	 *            the plynum
-	 * @param clr
-	 *            the clr
-	 */
-	public Card(String nm, int age, int plynum, CardColor clr) {
-		cmd = new CommandOption();
-		cmd.setCard(this);
-		cost = new EnumMap<Resource, Integer>(Resource.class);
-		goods = new EnumMap<Resource, Integer>(Resource.class);
-		freeList = null;
-		action = null;
-		name = nm;
-		this.age = age;
-		//coinNeed = cost.get(Resource.COIN);
-		playerNumber = plynum;
-		color = clr;
-	}
+    /**
+     * Instantiates a new card.
+     */
+    public Card() {
+        cmd = new CommandOption();
+        cmd.setCard(this);
+        cost = new EnumMap<Resource, Integer>(Resource.class);
+        goods = new EnumMap<Resource, Integer>(Resource.class);
+        freeList = null;
+        action = null;
+        coinNeed = 0;
+        name = "No Name";
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#clone()
-	 */
-	public Object clone() {
-		Card card = null;
-		try {
-			card = (Card) super.clone();
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
-		return card;
-	}
-	
-	int getCoin(){
-		if(cost.containsKey(Resource.COIN))
-			return cost.get(Resource.COIN);
-		else 
-			return 0;
-	}
+    /**
+     * Instantiates a new card.
+     *
+     * @param nm     the nm
+     * @param age    the age
+     * @param plynum the plynum
+     * @param clr    the clr
+     */
+    public Card(String nm, int age, int plynum, CardColor clr) {
+        cmd = new CommandOption();
+        cmd.setCard(this);
+        cost = new EnumMap<Resource, Integer>(Resource.class);
+        goods = new EnumMap<Resource, Integer>(Resource.class);
+        freeList = null;
+        action = null;
+        name = nm;
+        this.age = age;
+        //coinNeed = cost.get(Resource.COIN);
+        playerNumber = plynum;
+        color = clr;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	public String toString() {
-		StringBuilder str = new StringBuilder(name);
-		Set<Resource> costSet = cost.keySet();
-		Set<Resource> goodsSet = goods.keySet();
-		str.append("(AGE:" + age + " P#:" + playerNumber + " " + color + ")");
-		str.append("\t  Cost: ");
-		for (Resource r : costSet) {
-			str.append(cost.get(r) + " " + r.toString() + "  ");
-		}
-		str.append("  Provides: ");
-		for (Resource r : goodsSet) {
-			str.append(goods.get(r) + " " + r.toString() + "  ");
-		}
-		if (this.hasAction())
-			str.append(this.getAction().toString());
-		// str.append("\n");
-		return str.toString();
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see java.lang.Object#clone()
+     */
+    public Object clone() {
+        Card card = null;
+        try {
+            card = (Card) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return card;
+    }
 
-	public int getCoinNeed() {
-		return coinNeed;
-	}
+    int getCoin() {
+        if (cost.containsKey(Resource.COIN))
+            return cost.get(Resource.COIN);
+        else
+            return 0;
+    }
 
-	public void setCoinNeed(int coinNeed) {
-		this.coinNeed = coinNeed;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see java.lang.Object#toString()
+     */
+    public String toString() {
+        StringBuilder str = new StringBuilder(name);
+        Set<Resource> costSet = cost.keySet();
+        Set<Resource> goodsSet = goods.keySet();
+        str.append("(AGE:" + age + " P#:" + playerNumber + " " + color + ")");
+        str.append("\t  Cost: ");
+        for (Resource r : costSet) {
+            str.append(cost.get(r) + " " + r.toString() + "  ");
+        }
+        str.append("  Provides: ");
+        for (Resource r : goodsSet) {
+            str.append(goods.get(r) + " " + r.toString() + "  ");
+        }
+        if (this.hasAction())
+            str.append(this.getAction().toString());
+        // str.append("\n");
+        return str.toString();
+    }
 
-	/**
-	 * Adds the to free list.
-	 * 
-	 * @param str
-	 *            the str
-	 */
-	public void addToFreeList(String str) {
-		if (freeList == null)
-			freeList = new ArrayList<String>();
-		freeList.add(str);
-	}
+    public int getCoinNeed() {
+        return coinNeed;
+    }
 
-	/**
-	 * Gets the freelist iter.
-	 * 
-	 * @return the freelist iter
-	 */
-	public Iterator<String> getFreelistIter() {
-		if (freeList == null)
-			freeList = new ArrayList<String>();
-		return freeList.iterator();
-	}
+    public void setCoinNeed(int coinNeed) {
+        this.coinNeed = coinNeed;
+    }
 
-	public ArrayList<String> getFreeList() {
-		return freeList;
-	}
+    /**
+     * Adds the to free list.
+     *
+     * @param str the str
+     */
+    public void addToFreeList(String str) {
+        if (freeList == null)
+            freeList = new ArrayList<String>();
+        freeList.add(str);
+    }
 
-	public void setFreeList(ArrayList<String> freeList) {
-		this.freeList = freeList;
-	}
+    /**
+     * Gets the freelist iter.
+     *
+     * @return the freelist iter
+     */
+    public Iterator<String> getFreelistIter() {
+        if (freeList == null)
+            freeList = new ArrayList<String>();
+        return freeList.iterator();
+    }
 
-	public CommandOption getCmd() {
-		return cmd;
-	}
+    public ArrayList<String> getFreeList() {
+        return freeList;
+    }
 
-	public void setCmd(CommandOption cmd) {
-		this.cmd = cmd;
-	}
+    public void setFreeList(ArrayList<String> freeList) {
+        this.freeList = freeList;
+    }
 
-	/**
-	 * Sets the name.
-	 * 
-	 * @param nm
-	 *            the new name
-	 */
-	public void setName(String nm) {
-		name = nm;
-	}
+    public CommandOption getCmd() {
+        return cmd;
+    }
 
-	/**
-	 * Gets the name.
-	 * 
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+    public void setCmd(CommandOption cmd) {
+        this.cmd = cmd;
+    }
 
-	/**
-	 * Adds the cost.
-	 * 
-	 * @param r
-	 *            the r
-	 * @param i
-	 *            the i
-	 */
-	public void addCost(Resource r, int i) {
-		cost.put(r, i);
-	}
+    /**
+     * Sets the name.
+     *
+     * @param nm the new name
+     */
+    public void setName(String nm) {
+        name = nm;
+    }
 
-	/**
-	 * Adds the goods.
-	 * 
-	 * @param r
-	 *            the r
-	 * @param i
-	 *            the i
-	 */
-	public void addGoods(Resource r, int i) {
-		goods.put(r, i);
-	}
+    /**
+     * Gets the name.
+     *
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.tjuscs.sevenwonders.core.Buildable#getGoods()
-	 */
-	public Set<Resource> getGoods() {
-		return goods.keySet();
-	}
+    /**
+     * Adds the cost.
+     *
+     * @param r the r
+     * @param i the i
+     */
+    public void addCost(Resource r, int i) {
+        cost.put(r, i);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.tjuscs.sevenwonders.core.Buildable#goodsCnt(org.tjuscs.sevenwonders
-	 * .core.Resource)
-	 */
-	public int goodsCnt(Resource r) {
-		int cnt = 0;
-		if (goods.containsKey(r))
-			cnt = goods.get(r);
-		return cnt;
-	}
+    /**
+     * Adds the goods.
+     *
+     * @param r the r
+     * @param i the i
+     */
+    public void addGoods(Resource r, int i) {
+        goods.put(r, i);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.tjuscs.sevenwonders.core.Buildable#getCosts()
-	 */
-	public Set<Resource> getCosts() {
-		return cost.keySet();
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.tjuscs.sevenwonders.core.Buildable#getGoods()
+     */
+    public Set<Resource> getGoods() {
+        return goods.keySet();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.tjuscs.sevenwonders.core.Buildable#costCnt(org.tjuscs.sevenwonders
-	 * .core.Resource)
-	 */
-	public int costCnt(Resource r) {
-		return cost.get(r);
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * org.tjuscs.sevenwonders.core.Buildable#goodsCnt(org.tjuscs.sevenwonders
+     * .core.Resource)
+     */
+    public int goodsCnt(Resource r) {
+        int cnt = 0;
+        if (goods.containsKey(r))
+            cnt = goods.get(r);
+        return cnt;
+    }
 
-	/**
-	 * Gets the age.
-	 * 
-	 * @return the age
-	 */
-	public int getAge() {
-		return age;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.tjuscs.sevenwonders.core.Buildable#getCosts()
+     */
+    public Set<Resource> getCosts() {
+        return cost.keySet();
+    }
 
-	/**
-	 * Sets the age.
-	 * 
-	 * @param age
-	 *            the new age
-	 */
-	public void setAge(int age) {
-		this.age = age;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * org.tjuscs.sevenwonders.core.Buildable#costCnt(org.tjuscs.sevenwonders
+     * .core.Resource)
+     */
+    public int costCnt(Resource r) {
+        return cost.get(r);
+    }
 
-	/**
-	 * Sets the action.
-	 * 
-	 * @param act
-	 *            the new action
-	 */
-	public void setAction(Action act) {
-		action = act;
-	}
+    /**
+     * Gets the age.
+     *
+     * @return the age
+     */
+    public int getAge() {
+        return age;
+    }
 
-	/**
-	 * Gets the action.
-	 * 
-	 * @return the action
-	 */
-	public Action getAction() {
-		return action;
-	}
+    /**
+     * Sets the age.
+     *
+     * @param age the new age
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.tjuscs.sevenwonders.core.Buildable#hasAction()
-	 */
-	public boolean hasAction() {
-		if (action == null)
-			return false;
-		else
-			return true;
-	}
+    /**
+     * Sets the action.
+     *
+     * @param act the new action
+     */
+    public void setAction(Action act) {
+        action = act;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.tjuscs.sevenwonders.core.Buildable#hasResources()
-	 */
-	public boolean hasResources() {
-		if (action == null)
-			return true;
-		else
-			return false;
-	}
+    /**
+     * Gets the action.
+     *
+     * @return the action
+     */
+    public Action getAction() {
+        return action;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.tjuscs.sevenwonders.core.Buildable#hasOrResources()
-	 */
-	public boolean hasOrResources() {
-		for (Resource r : getGoods()) {
-			if (r.index() == -1)
-				return true;
-		}
-		return false;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.tjuscs.sevenwonders.core.Buildable#hasAction()
+     */
+    public boolean hasAction() {
+        if (action == null)
+            return false;
+        else
+            return true;
+    }
 
-	/**
-	 * Checks if is free to build.
-	 * 
-	 * @return true, if is free to build
-	 */
-	public boolean isFreeToBuild() {
-		for (Resource r : getCosts()) {
-			if (r == Resource.FREE)
-				return true;
-		}
-		return false;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.tjuscs.sevenwonders.core.Buildable#hasResources()
+     */
+    public boolean hasResources() {
+        if (action == null)
+            return true;
+        else
+            return false;
+    }
 
-	/**
-	 * Gets the color.
-	 * 
-	 * @return the color
-	 */
-	public CardColor getColor() {
-		return color;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.tjuscs.sevenwonders.core.Buildable#hasOrResources()
+     */
+    public boolean hasOrResources() {
+        for (Resource r : getGoods()) {
+            if (r.index() == -1)
+                return true;
+        }
+        return false;
+    }
 
-	/**
-	 * Gets the player number.
-	 * 
-	 * @return the player number
-	 */
-	public int getplayerNumber() {
-		return playerNumber;
-	}
+    /**
+     * Checks if is free to build.
+     *
+     * @return true, if is free to build
+     */
+    public boolean isFreeToBuild() {
+        for (Resource r : getCosts()) {
+            if (r == Resource.FREE)
+                return true;
+        }
+        return false;
+    }
 
-	/**
-	 * Sets the player number.
-	 * 
-	 * @param playNum
-	 *            the new player number
-	 */
-	public void setplayerNumber(int playNum) {
-		this.playerNumber = playNum;
-	}
+    /**
+     * Gets the color.
+     *
+     * @return the color
+     */
+    public CardColor getColor() {
+        return color;
+    }
+
+    /**
+     * Gets the player number.
+     *
+     * @return the player number
+     */
+    public int getplayerNumber() {
+        return playerNumber;
+    }
+
+    /**
+     * Sets the player number.
+     *
+     * @param playNum the new player number
+     */
+    public void setplayerNumber(int playNum) {
+        this.playerNumber = playNum;
+    }
 
 } // end of Card class

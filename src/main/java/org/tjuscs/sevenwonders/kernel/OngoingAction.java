@@ -5,8 +5,8 @@ package org.tjuscs.sevenwonders.kernel;
  */
 public interface OngoingAction {
 
-	/**
-	 * Update stats.
-	 */
-	void updateStats();
+    /**
+     * Update stats.
+     */
+    void updateStats();
 }
