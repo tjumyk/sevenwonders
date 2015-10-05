@@ -9,7 +9,7 @@ Updates
 ----------
 Google Code is shutting down, so I decided to move the source code here.
 
-I will try to fix some severe issues to make it runnable under the latest Java runtime and reorganize source files in Maven's flavour for the universal deployment , but this is only for the memory.
+I ~~will try to fix~~ (should have fixed) some severe issues to make it runnable under the latest Java runtime and reorganize source files in Maven's flavour for the universal deployment , but this is only for the memory.
 
 For other historical bug fixes and further improvements... I prefer a total rewrite if I have enough free time.
 
@@ -20,7 +20,7 @@ Acknowledgements
 Although I messed things up and finally failed to achieve our initial goal, I still want to say "thank you"" to the following gentlemen who have given me a lot of help.
 
 * Advisor
-    * Lonnie Heinke
+    * [Lonnie Heinke](http://luokai.org/)
 * Team Members
     * Yang Bao
     * Xingtao Jiang
