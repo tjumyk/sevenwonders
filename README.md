@@ -17,7 +17,7 @@ Nevertheless, if you are interested, feel free to fork and play with it. :)
 
 Acknowledgements
 ----------
-Although I messed things up and finally failed to achieve our initial goal, I still want to say "thank you"" to the following gentlemen who have given me a lot of help.
+Although I messed things up and finally failed to achieve our initial goal, I still want to say "thank you" to the following gentlemen who have given me a lot of help.
 
 * Advisor
     * [Lonnie Heinke](http://luokai.org/)
