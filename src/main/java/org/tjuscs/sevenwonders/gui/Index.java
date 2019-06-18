@@ -660,7 +660,7 @@ public class Index extends SceneContainer {
         settingDialog.getChildren().add(t3);
         final ChoiceBox<String> screenSize = new ChoiceBox<String>();
         screenSize.getItems().addAll("800 * 600", "960 * 720", "1028 * 771", "1280 * 960", "960 * 540", "1120 * 630",
-                "1280 * 720", "1366 * 768");
+                "1280 * 720", "1366 * 768", "1920 * 1080");
         screenSize.getSelectionModel().selectFirst();
         screenSize.setLayoutX(194);
         screenSize.setLayoutY(100);

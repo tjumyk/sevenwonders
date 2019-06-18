@@ -3,6 +3,7 @@ package org.tjuscs.sevenwonders.gui;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
@@ -10,10 +11,11 @@ import javafx.util.Duration;
 public class MovingStroke {
     public static Shape set(Shape s, Paint color, double width, double lineLength, double spaceLength,
                             double secendsPerFrame) {
-        if (s instanceof Rectangle)
-            RectangleBuilder.create().strokeDashArray(lineLength, spaceLength).applyTo(s);
-        else if (s instanceof Circle)
-            CircleBuilder.create().strokeDashArray(lineLength, spaceLength).applyTo(s);
+        if (s instanceof Rectangle || s instanceof Circle) {
+            ObservableList<Double> dashArray = s.getStrokeDashArray();
+            dashArray.clear();
+            dashArray.addAll(lineLength, spaceLength);
+        }
 
         s.setStroke(color);
         s.setStrokeDashOffset(0);

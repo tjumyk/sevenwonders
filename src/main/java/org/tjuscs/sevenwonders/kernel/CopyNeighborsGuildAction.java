@@ -44,7 +44,7 @@ public class CopyNeighborsGuildAction implements Action, DelayedAction {
                 options.add(new CommandOption(card, 0, null, null, null, true,
                         true));
         }
-        CommandOption[] arr = options.toArray(null);
+        CommandOption[] arr = options.toArray(new CommandOption[1]);
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("TESTING ");
         System.out.println("TESTING CopyNeighborsGuildAction:");

@@ -17,7 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.PerspectiveTransform;
-import javafx.scene.effect.ReflectionBuilder;
+import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -325,7 +325,9 @@ public class DisplayShelf extends SceneContainer {
 
         public PerspectiveImage(Image image) {
             ImageView imageView = new ImageView(image);
-            imageView.setEffect(ReflectionBuilder.create().fraction(REFLECTION_SIZE).build());
+            Reflection reflection = new Reflection();
+            reflection.setFraction(REFLECTION_SIZE);
+            imageView.setEffect(reflection);
             setEffect(transform);
             Rectangle rec = new Rectangle(image.getWidth(), image.getHeight());
             rec.setArcHeight(150);

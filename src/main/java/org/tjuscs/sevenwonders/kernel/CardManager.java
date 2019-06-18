@@ -106,7 +106,7 @@ public class CardManager {
      * @return the discarded cards
      */
     public Card[] getDiscardedCards() {
-        return discard.toArray(null);
+        return discard.toArray(new Card[1]);
     }
 
     /**

@@ -79,14 +79,8 @@ public class Manager extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Manager.manager = this;
-        netscape.javascript.JSObject browser = getHostServices().getWebContext();
-        isApplet = browser != null;
-        if (isApplet) {
-            GUIManager.width = (int) primaryStage.getWidth();
-            GUIManager.height = (int) primaryStage.getHeight();
-            log.info("Starting running as an Applet...");
-        } else
-            log.info("Start running as an Application...");
+        isApplet = false;
+        log.info("Start running as an Application...");
         log.info("Now Loading GUI Moduel...");
         gm.start(primaryStage);
     }
@@ -160,10 +154,7 @@ public class Manager extends Application {
 
     public static void exit(int exitCode) {
         Manager.exitCode = exitCode;
-        if (Manager.isApplet)
-            Manager.getManager().getHostServices().getWebContext().eval("close()");
-        else
-            Platform.exit();
+        Platform.exit();
 
     }
 
